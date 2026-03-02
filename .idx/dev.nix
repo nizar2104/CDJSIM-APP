@@ -23,6 +23,7 @@
     pkgs.mesa-utils
     pkgs.libglvnd
     pkgs.xorg.libX11
+    pkgs.gh
   ];
 
   # Sets environment variables in the workspace
