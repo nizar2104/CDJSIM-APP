@@ -8,9 +8,21 @@
   packages = [
     pkgs.python311
     pkgs.python311Packages.pip
-    pkgs.kivy
-    pkgs.python311Packages.kivymd
     pkgs.buildozer
+    pkgs.bazel-buildtools
+    pkgs.SDL2
+    pkgs.SDL2_image
+    pkgs.SDL2_mixer
+    pkgs.SDL2_ttf
+    pkgs.glew
+    pkgs.gstreamer
+    pkgs.gst-plugins-base
+    pkgs.zenity
+    pkgs.python311Packages.tkinter
+    pkgs.mesa
+    pkgs.mesa-utils
+    pkgs.libglvnd
+    pkgs.xorg.libX11
   ];
 
   # Sets environment variables in the workspace
@@ -26,7 +38,7 @@
       enable = true;
       previews = {
         web = {
-          command = ["python" "main.py"];
+          command = ["python", "main.py"];
           manager = "web";
         };
       };
@@ -36,12 +48,12 @@
     workspace = {
       # Runs when a workspace is first created
       onCreate = {
-        npm-install = "pip install -r requirements.txt";
+        "npm-install" = "pip install -r requirements.txt";
       };
       # Runs when the workspace is (re)started
       onStart = {
         # Example: start a background task to watch and re-build backend code
-        # watch-backend = "npm run watch-backend";
+        # "watch-backend" = "npm run watch-backend";
       };
     };
   };
