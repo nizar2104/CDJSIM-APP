@@ -39,7 +39,7 @@
       enable = true;
       previews = {
         web = {
-          command = ["python", "main.py"];
+          command = "python main.py";
           manager = "web";
         };
       };
