@@ -15,7 +15,6 @@
     pkgs.SDL2_mixer
     pkgs.SDL2_ttf
     pkgs.glew
-    pkgs.gstreamer
     pkgs.gst-plugins-base
     pkgs.zenity
     pkgs.python311Packages.tkinter
