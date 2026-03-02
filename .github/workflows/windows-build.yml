@@ -1,0 +1,39 @@
+name: Build Windows Executable
+
+# This triggers the build when you push to the main branch 
+# or when you manually click a button in the Actions tab.
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch: 
+
+jobs:
+  build-windows:
+    runs-on: windows-latest # Tells GitHub to use a Windows machine
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11' # Uses a stable Python version
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install customtkinter psutil pyinstaller
+
+    - name: Build with PyInstaller
+      # --onefile makes a single .exe
+      # --windowed hides the background console
+      # --collect-all is crucial so CustomTkinter's themes are included
+      run: |
+        pyinstaller --noconfirm --onefile --windowed --collect-all customtkinter --name "CDJ_Simulator" CDJSim.py
+
+    - name: Upload Windows EXE
+      uses: actions/upload-artifact@v4
+      with:
+        name: CDJ-Simulator-Windows
+        path: dist/CDJ_Simulator.exe
